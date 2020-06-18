@@ -1,0 +1,13 @@
+C:\Users\piter\Desktop\C# projekty\kik\bin\Debug\netcoreapp3.1\kik.exe
+C:\Users\piter\Desktop\C# projekty\kik\bin\Debug\netcoreapp3.1\kik.deps.json
+C:\Users\piter\Desktop\C# projekty\kik\bin\Debug\netcoreapp3.1\kik.runtimeconfig.json
+C:\Users\piter\Desktop\C# projekty\kik\bin\Debug\netcoreapp3.1\kik.runtimeconfig.dev.json
+C:\Users\piter\Desktop\C# projekty\kik\bin\Debug\netcoreapp3.1\kik.dll
+C:\Users\piter\Desktop\C# projekty\kik\bin\Debug\netcoreapp3.1\kik.pdb
+C:\Users\piter\Desktop\C# projekty\kik\obj\Debug\netcoreapp3.1\kik.csprojAssemblyReference.cache
+C:\Users\piter\Desktop\C# projekty\kik\obj\Debug\netcoreapp3.1\kik.csproj.CoreCompileInputs.cache
+C:\Users\piter\Desktop\C# projekty\kik\obj\Debug\netcoreapp3.1\kik.AssemblyInfoInputs.cache
+C:\Users\piter\Desktop\C# projekty\kik\obj\Debug\netcoreapp3.1\kik.AssemblyInfo.cs
+C:\Users\piter\Desktop\C# projekty\kik\obj\Debug\netcoreapp3.1\kik.dll
+C:\Users\piter\Desktop\C# projekty\kik\obj\Debug\netcoreapp3.1\kik.pdb
+C:\Users\piter\Desktop\C# projekty\kik\obj\Debug\netcoreapp3.1\kik.genruntimeconfig.cache
