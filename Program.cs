@@ -6,7 +6,9 @@ namespace kik
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello!");
+            Gra test=new Gra('X');
+            while(true)
+            test.gravskomputer();
         }
     }
 }

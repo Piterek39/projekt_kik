@@ -1,30 +1,46 @@
 using System;
-
+using System.Collections.Generic;
 namespace kik
 {
     class Gra
     {
-        static int [,] tablica;
+        public List<char[]> plansza=new List<char[]> ()
+        {
+           new char[]{' ',' ',' '},
+           new char[] {' ',' ',' '},
+            new char[]{' ',' ',' '}
+            
+        };
 
-         public static void Tablica()
-         {
-               for (int rzad=0; rzad<3; rzad++)
-            {
-                for (int kolumna=0; kolumna<3; kolumna++)
-                {
-                    tablica[rzad,kolumna]=' ';
-                }
-         }
-         Wypisanie_tablicy();
-         }
-        private static void Wypisanie_tablicy()
+        public Gra(char gracz)
+        {
+            Gracz=gracz;
+        }
+        public char Gracz
+        {
+            get;
+            set;
+        }
+
+        //  public static void Tablica()
+        //  {
+        //        for (int rzad=0; rzad<3; rzad++)
+        //     {
+        //         for (int kolumna=0; kolumna<3; kolumna++)
+        //         {
+        //             this.plansza[rzad][kolumna]=' ';
+        //         }
+        //  //}
+        //  Wypisanie_tablicy();
+        //  }
+        public void Wypisanie_tablicy()
         {
             for (int rzad=0; rzad<3; rzad++)
             {
                 Console.Write("| ");
-                for (int kolumna=0; kolumna<3; kolumna++)
+                foreach (var item in this.plansza[rzad])
                 {
-                    Console.Write(tablica[rzad,kolumna]);
+                    Console.Write(item);
                     Console.Write(" | ");
                 }
                 Console.WriteLine();
@@ -33,11 +49,135 @@ namespace kik
         private bool Sprawdzenie_miejsca(int rzad, int kolumna)
         {
             bool ok=false;
-            if(rzad>3 || kolumna>3)
+            if(rzad>2 || kolumna>2||rzad<0||kolumna<0)
                 return false;
-            if(tablica[rzad,kolumna] !='X' && tablica[rzad,kolumna]!='O')
+            if(plansza[rzad][kolumna] !='X' && plansza[rzad][kolumna]!='O')
                 ok=true;
                 return ok;
         }
+        private bool remis()
+        {
+             for (int rzad=0; rzad<3; rzad++)
+            {
+                for (int kolumna=0; kolumna<3; kolumna++)
+                {
+                    if(plansza[rzad][kolumna]!='X' && plansza[rzad][kolumna]!='O')
+                        return false;
+                }
+                }
+                    return true;
+        }
+        private bool wygrana()
+        {
+            if(plansza[0][0]==Gracz&&plansza[0][1]==Gracz&&plansza[0][2]==Gracz)
+                return true;
+            if(plansza[1][0]==Gracz&&plansza[1][1]==Gracz&&plansza[1][2]==Gracz)
+                return true;
+            if(plansza[2][0]==Gracz&&plansza[2][1]==Gracz&&plansza[2][2]==Gracz)
+                return true;
+            if(plansza[0][0]==Gracz&&plansza[1][0]==Gracz&&plansza[2][0]==Gracz)
+                return true;
+            if(plansza[0][1]==Gracz&&plansza[1][1]==Gracz&&plansza[2][1]==Gracz)
+                return true;
+            if(plansza[0][2]==Gracz&&plansza[1][2]==Gracz&&plansza[2][2]==Gracz)
+                return true;
+            if(plansza[0][0]==Gracz&&plansza[1][1]==Gracz&&plansza[0][2]==Gracz)
+                return true;
+            if(plansza[1][0]==Gracz&&plansza[1][1]==Gracz&&plansza[2][0]==Gracz)
+                return true;  
+                return false;      
+        }
+        public static char ZmianaTury(char aktualnygracz)
+        {
+            if(aktualnygracz=='X')
+            {
+                return 'O';
+            }
+            else 
+            {
+                return 'X';
+            }
+        }
+        public bool gra1v1()
+        {
+            int rzad=0;
+            int kolumna=0;
+            char Gracz='X';
+            Console.Write("Podaj rzad: ");
+            int.TryParse(Console.ReadLine().Trim(),out rzad);
+            Console.Write("Podaj kolumne: ");
+            int.TryParse(Console.ReadLine().Trim(),out kolumna);
+            while(!Sprawdzenie_miejsca(rzad,kolumna))
+            {
+            Console.Write("Zle miejsce. Sprobuj ponownie");
+            Console.Write("Podaj rzad: ");
+            int.TryParse(Console.ReadLine().Trim(),out rzad);
+            Console.Write("Podaj kolumne: ");
+            int.TryParse(Console.ReadLine().Trim(),out kolumna);
+            }
+            plansza[rzad][kolumna]=Gracz;
+            Wypisanie_tablicy();
+            if (wygrana())
+            {
+                Console.WriteLine("wygral gracz"+Gracz);
+                return true;
+            }
+            else if (remis())
+            {
+                Console.WriteLine("Remis");
+                return true;
+            }
+            Gracz=ZmianaTury(Gracz);
+            return false;
+             
+         }
+     public bool gravskomputer()
+        {
+            int rzad=0;
+            int kolumna=0;
+            Random rand1=new Random();
+            Random rand2=new Random();
+            char Gracz='X';
+            if(Gracz=='X')
+            {Console.Write("Podaj rzad: ");
+            int.TryParse(Console.ReadLine().Trim(),out rzad);
+            Console.Write("Podaj kolumne: ");
+            int.TryParse(Console.ReadLine().Trim(),out kolumna);
+            while(!Sprawdzenie_miejsca(rzad,kolumna))
+            {
+            Console.Write("Zle miejsce. Sprobuj ponownie");
+            Console.Write("Podaj rzad: ");
+            int.TryParse(Console.ReadLine().Trim(),out rzad);
+            Console.Write("Podaj kolumne: ");
+            int.TryParse(Console.ReadLine().Trim(),out rzad);
+            }
+            plansza[rzad][kolumna]=Gracz;}
+            else
+            {
+            rzad=rand1.Next(1,4);
+            kolumna=rand2.Next(1,4);
+            while(!Sprawdzenie_miejsca(rzad,kolumna))
+            {
+            rzad=rand1.Next(1,4);
+            kolumna=rand2.Next(1,4);
+            }
+            plansza[rzad][kolumna]=Gracz;
+            }
+            Wypisanie_tablicy();
+            if (wygrana())
+            {
+                Console.WriteLine("wygral gracz"+Gracz);
+                return true;
+            }
+            else if (remis())
+            {
+                Console.WriteLine("Remis");
+                return true;
+            }
+            Gracz=ZmianaTury(Gracz);
+            return false;
+            
+         }
+        
     }
 }
