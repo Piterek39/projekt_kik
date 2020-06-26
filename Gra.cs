@@ -100,9 +100,12 @@ namespace kik
         }
         public bool gra1v1()
         {
+            bool koniecgry= false;
             int rzad=0;
             int kolumna=0;
             char Gracz='X';
+            while(koniecgry==false)
+            {
             Console.Write("Podaj rzad: ");
             int.TryParse(Console.ReadLine().Trim(),out rzad);
             Console.Write("Podaj kolumne: ");
@@ -119,25 +122,31 @@ namespace kik
             Wypisanie_tablicy();
             if (wygrana())
             {
-                Console.WriteLine("wygral gracz"+Gracz);
+                Console.WriteLine("wygral gracz "+Gracz);
+                koniecgry=true;
                 return true;
             }
             else if (remis())
             {
                 Console.WriteLine("Remis");
+                koniecgry=true;
                 return true;
             }
             Gracz=ZmianaTury(Gracz);
+            }
             return false;
              
          }
      public bool gravskomputer()
         {
+            bool koniecgry= false;
             int rzad=0;
             int kolumna=0;
             Random rand1=new Random();
             Random rand2=new Random();
             char Gracz='X';
+            while(koniecgry==false)
+            {
             if(Gracz=='X')
             {Console.Write("Podaj rzad: ");
             int.TryParse(Console.ReadLine().Trim(),out rzad);
@@ -166,15 +175,18 @@ namespace kik
             Wypisanie_tablicy();
             if (wygrana())
             {
-                Console.WriteLine("wygral gracz"+Gracz);
+                Console.WriteLine("wygral gracz "+Gracz);
+                koniecgry=true;    
                 return true;
             }
             else if (remis())
             {
                 Console.WriteLine("Remis");
+                koniecgry=true;
                 return true;
             }
             Gracz=ZmianaTury(Gracz);
+            }
             return false;
             
          }
