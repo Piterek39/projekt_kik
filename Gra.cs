@@ -104,6 +104,7 @@ namespace kik
             int rzad=0;
             int kolumna=0;
             char Gracz='X';
+            Wypisanie_tablicy();
             while(koniecgry==false)
             {
             Console.Write("Podaj rzad: ");
@@ -112,7 +113,7 @@ namespace kik
             int.TryParse(Console.ReadLine().Trim(),out kolumna);
             while(!Sprawdzenie_miejsca(rzad,kolumna))
             {
-            Console.Write("Zle miejsce. Sprobuj ponownie");
+            Console.WriteLine("Zle miejsce. Sprobuj ponownie");
             Console.Write("Podaj rzad: ");
             int.TryParse(Console.ReadLine().Trim(),out rzad);
             Console.Write("Podaj kolumne: ");
@@ -124,12 +125,14 @@ namespace kik
             {
                 Console.WriteLine("wygral gracz "+Gracz);
                 koniecgry=true;
+                Console.ReadKey();
                 return true;
             }
             else if (remis())
             {
                 Console.WriteLine("Remis");
                 koniecgry=true;
+                Console.ReadKey();
                 return true;
             }
             Gracz=ZmianaTury(Gracz);
@@ -145,6 +148,7 @@ namespace kik
             Random rand1=new Random();
             Random rand2=new Random();
             char Gracz='X';
+            Wypisanie_tablicy();
             while(koniecgry==false)
             {
             if(Gracz=='X')
@@ -154,35 +158,41 @@ namespace kik
             int.TryParse(Console.ReadLine().Trim(),out kolumna);
             while(!Sprawdzenie_miejsca(rzad,kolumna))
             {
-            Console.Write("Zle miejsce. Sprobuj ponownie");
+            Console.WriteLine("Zle miejsce. Sprobuj ponownie");
             Console.Write("Podaj rzad: ");
             int.TryParse(Console.ReadLine().Trim(),out rzad);
             Console.Write("Podaj kolumne: ");
             int.TryParse(Console.ReadLine().Trim(),out rzad);
             }
-            plansza[rzad][kolumna]=Gracz;}
+            plansza[rzad][kolumna]=Gracz;
+            }
             else
             {
-            rzad=rand1.Next(1,4);
-            kolumna=rand2.Next(1,4);
+            rzad=rand1.Next(0,3);
+            for(int i=0;i<5000;i++)
+            kolumna=rand2.Next(0,3);
             while(!Sprawdzenie_miejsca(rzad,kolumna))
             {
-            rzad=rand1.Next(1,4);
-            kolumna=rand2.Next(1,4);
+            rzad=rand1.Next(0,3);
+            for(int i=0;i<5000;i++)
+            kolumna=rand2.Next(0,3);
             }
             plansza[rzad][kolumna]=Gracz;
             }
+            if(Gracz!='X')
             Wypisanie_tablicy();
             if (wygrana())
             {
                 Console.WriteLine("wygral gracz "+Gracz);
-                koniecgry=true;    
+                koniecgry=true; 
+                Console.ReadKey();   
                 return true;
             }
             else if (remis())
             {
                 Console.WriteLine("Remis");
                 koniecgry=true;
+                Console.ReadKey();
                 return true;
             }
             Gracz=ZmianaTury(Gracz);
