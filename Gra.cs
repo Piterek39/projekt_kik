@@ -21,19 +21,7 @@ namespace kik
             get;
             set;
         }
-
-        //  public static void Tablica()
-        //  {
-        //        for (int rzad=0; rzad<3; rzad++)
-        //     {
-        //         for (int kolumna=0; kolumna<3; kolumna++)
-        //         {
-        //             this.plansza[rzad][kolumna]=' ';
-        //         }
-        //  //}
-        //  Wypisanie_tablicy();
-        //  }
-        public void Wypisanie_tablicy()
+        public void Wypisanie_tablicy() //funkcja wypisuje tablice
         {
             for (int rzad=0; rzad<3; rzad++)
             {
@@ -46,16 +34,16 @@ namespace kik
                 Console.WriteLine();
             }
         }
-        private bool Sprawdzenie_miejsca(int rzad, int kolumna)
+        private bool Sprawdzenie_miejsca(int rzad, int kolumna) //funkcja sprawdza poprawnosc wspolrzednych
         {
             bool ok=false;
             if(rzad>2 || kolumna>2||rzad<0||kolumna<0)
                 return false;
             if(plansza[rzad][kolumna] !='X' && plansza[rzad][kolumna]!='O')
                 ok=true;
-                return ok;
+        return ok;
         }
-        private bool remis()
+        private bool remis() //funkcja sprawdza czy nastapil remis
         {
              for (int rzad=0; rzad<3; rzad++)
             {
@@ -67,27 +55,30 @@ namespace kik
                 }
                     return true;
         }
-        private bool wygrana()
+        private bool wygrana() //funkcja sprawdza czy gracz wygral
         {
+            //rzad
             if(plansza[0][0]==Gracz&&plansza[0][1]==Gracz&&plansza[0][2]==Gracz)
                 return true;
             if(plansza[1][0]==Gracz&&plansza[1][1]==Gracz&&plansza[1][2]==Gracz)
                 return true;
             if(plansza[2][0]==Gracz&&plansza[2][1]==Gracz&&plansza[2][2]==Gracz)
                 return true;
+           //kolumna     
             if(plansza[0][0]==Gracz&&plansza[1][0]==Gracz&&plansza[2][0]==Gracz)
                 return true;
             if(plansza[0][1]==Gracz&&plansza[1][1]==Gracz&&plansza[2][1]==Gracz)
                 return true;
             if(plansza[0][2]==Gracz&&plansza[1][2]==Gracz&&plansza[2][2]==Gracz)
                 return true;
-            if(plansza[0][0]==Gracz&&plansza[1][1]==Gracz&&plansza[0][2]==Gracz)
+            //skos    
+            if(plansza[0][0]==Gracz&&plansza[1][1]==Gracz&&plansza[2][2]==Gracz)
                 return true;
-            if(plansza[1][0]==Gracz&&plansza[1][1]==Gracz&&plansza[2][0]==Gracz)
-                return true;  
-                return false;      
+            if(plansza[0][2]==Gracz&&plansza[1][1]==Gracz&&plansza[2][0]==Gracz)
+                return true;   
+        return false;      
         }
-        public static char ZmianaTury(char aktualnygracz)
+        public static char ZmianaTury(char aktualnygracz) //funkcja zmienia gracza
         {
             if(aktualnygracz=='X')
             {
@@ -98,12 +89,11 @@ namespace kik
                 return 'X';
             }
         }
-        public bool gra1v1()
+        public bool gra1v1() // gra przeciwko innemu graczowi
         {
             bool koniecgry= false;
             int rzad=0;
             int kolumna=0;
-            char Gracz='X';
             Wypisanie_tablicy();
             while(koniecgry==false)
             {
@@ -120,6 +110,7 @@ namespace kik
             int.TryParse(Console.ReadLine().Trim(),out kolumna);
             }
             plansza[rzad][kolumna]=Gracz;
+            Console.Clear();
             Wypisanie_tablicy();
             if (wygrana())
             {
@@ -140,14 +131,13 @@ namespace kik
             return false;
              
          }
-     public bool gravskomputer()
+     public bool gravskomputer() //gra przeciwko komputerowi
         {
             bool koniecgry= false;
             int rzad=0;
             int kolumna=0;
             Random rand1=new Random();
             Random rand2=new Random();
-            char Gracz='X';
             Wypisanie_tablicy();
             while(koniecgry==false)
             {
@@ -162,7 +152,7 @@ namespace kik
             Console.Write("Podaj rzad: ");
             int.TryParse(Console.ReadLine().Trim(),out rzad);
             Console.Write("Podaj kolumne: ");
-            int.TryParse(Console.ReadLine().Trim(),out rzad);
+            int.TryParse(Console.ReadLine().Trim(),out kolumna);
             }
             plansza[rzad][kolumna]=Gracz;
             }
@@ -180,6 +170,7 @@ namespace kik
             plansza[rzad][kolumna]=Gracz;
             }
             if(Gracz!='X')
+            Console.Clear();
             Wypisanie_tablicy();
             if (wygrana())
             {

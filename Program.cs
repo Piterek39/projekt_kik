@@ -6,9 +6,9 @@ namespace kik
     {
         static void Main(string[] args)
         {
-            Gra test=new Gra('X');
             while(true)
             {
+                Gra test=new Gra('X');
                 Console.Clear();
                 Console.WriteLine("Kolko i krzyzyk");
                 Console.WriteLine("1- Gra przeciwko drugiej osobie");
